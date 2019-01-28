@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row m-2 p-2">
+    <div class="col-8">
+      <div class="card">
+      <div class="card-header">
+        <div class="row">
+        <div class="col-8 text-left">
+          <b>Item</b>
+        </div>
+        <div class="col-2 text-left">
+          <b>Price</b>
+        </div>
+        <div class="col-2 text-left">
+          <b>Quantity</b>
+        </div>
+      </div>
+      </div>
+      <div class="card-content">
+        <div class="row  m-2 p-2 " *ngFor="let product of productList; let i = index;">
+            <div class="col-8 text-left">
+                {{product.name}}
+              </div>
+              <div class="col-2 text-left">
+                {{product.total}}
+              </div>
+              <div class="col-2 text-left text-danger">
+                  <i class="fa fa-minus" (click)="decreaseQuantity(i)" aria-hidden="true"></i> &nbsp;&nbsp; {{product.qty}} &nbsp;&nbsp; <i class="fa fa-plus" (click)="increaseQuantity(i)" aria-hidden="true"></i>
+              </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-4">
+      <div class="card border-primary">
+        <div class="card-header bg-primary">
+          Summary
+        </div>
+        <div class="card-content ">
+          <div class="row border-bottom m-1 p-1">
+            <div class="col-8 text-left" >
+              product1
+            </div>
+            <div class="col-4 text-right">
+                ₹ 100
+            </div>
+          </div>
+          <div class="row border-bottom m-1 p-1">
+            <div class="col-8 text-left" >
+              product2
+            </div>
+            <div class="col-4 text-right">
+                ₹ 150
+            </div>
+          </div>
+          <div class="row border-bottom m-1 p-1">
+              <div class="col-8 text-left" >
+                Tax
+              </div>
+              <div class="col-4 text-right">
+                  ₹ 15
+              </div>
+            </div>
+            <div class="row border-bottom m-1 p-1">
+              <div class="col-8 text-left" >
+                <b>SubTotal</b>
+              </div>
+              <div class="col-4 text-right">
+                <b>₹ 300</b>
+              </div>
+            </div>
+            <div class="row m-1 p-1">
+              <button class="btn btn-fill btn-block btn-warning">
+                Check Out
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

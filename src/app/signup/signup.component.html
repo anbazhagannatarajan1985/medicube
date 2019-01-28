@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="form_bg">
+      <form [formGroup]="signupForm">
+        <h2 class="text-center">Sign Up</h2>
+
+        <br/>
+        <div class="form-group">
+          <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Last Name">
+        </div>
+
+        <div class="form-group">
+          <input formControlName="email" type="email" class="form-control" id="email" placeholder="EMAIL">
+        </div>
+        <div class="form-group">
+          <input formControlName="password" type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <input formControlName="phone" type="text" class="form-control" id="phone" placeholder="Phone Number">
+        </div>
+        <div *ngIf="userCreated" class="form-group">
+          <span class="text-success">User Created Successfully...</span>
+        </div>
+        <div *ngIf="failedToCreateUser" class="form-group">
+          <span class="text-success">Failed to create user...</span>
+        </div>
+        <br/>
+        <div class="align-center form-group">
+          <button [disabled]="!signupForm.valid" (click)="signup()" class="btn btn-block btn-primary">Signup</button>
+        </div>
+        <div class="align-center form-group">
+          <button [routerLink]="['/login']" type="submit" class="btn btn-block btn-danger" id="login">Already have an account?</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
