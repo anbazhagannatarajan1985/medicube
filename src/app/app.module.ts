@@ -16,6 +16,10 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { FooterComponent } from './footer/footer.component';
 import { KartService } from './kart-service.service';
 import { ApiService } from './api.service';
+import { AddItemListComponent } from './add-item-list/add-item-list.component';
+import { MenuService } from './shared/services/menu.service';
+import { SharedService } from './shared/services/shared-service';
+import { OrderConfirmationComponent } from './order-confirmation/order-confirmation.component';
 
 
 @NgModule({
@@ -27,7 +31,9 @@ import { ApiService } from './api.service';
     HomeComponent,
     CartComponent,
     ItemListComponent,
-    FooterComponent
+    FooterComponent,
+    AddItemListComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,7 @@ import { ApiService } from './api.service';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [KartService, ApiService],
+  providers: [KartService, ApiService, MenuService, SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

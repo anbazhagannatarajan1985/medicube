@@ -32,15 +32,15 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    debugger
+
     this.failedToCreateUser = false;
     this.userCreated = false;
     const data: models.UserModel = {};
-    data.email = this.signupForm.get('email').value;
+    data.userName = this.signupForm.get('email').value;
     data.password = this.signupForm.get('password').value;
     data.firstName = this.signupForm.get('firstName').value;
     data.lastName = this.signupForm.get('lastName').value;
-    data.phone = this.signupForm.get('phone').value;
+    data.phoneNumber = this.signupForm.get('phone').value;
 
     this.apiService.signup(data).subscribe(
       result => {

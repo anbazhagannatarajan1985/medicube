@@ -1,0 +1,80 @@
+<div class="container" style="padding-bottom: 100px !important;">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <form [formGroup]="itemForm">
+
+        <div class="card card-default  border-primary">
+          <div class="card-header text-center card-header-style">
+            Add New Item
+          </div>
+          <div class="card-body">
+
+            <div class="row">
+              <div class="col-md-2"></div>
+              <div class="col-md-8">
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <input formControlName="productName" type="text" class="form-control border-primary" id="productName" placeholder="Product Name">
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input formControlName="price" type="number" class="form-control border-primary" id="price" placeholder="Price">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <select class="form-control border-primary" formControlName="category">
+                      <option value="" selected disabled>--Select Category--</option>
+                      <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <select class="form-control border-primary" formControlName="subCategory">
+                      <option value="" selected disabled>--Select Sub Category--</option>
+                      <option *ngFor="let category of subCategories" value="{{category.id}}">{{category.name}}</option>
+                    </select>
+                  </div>
+
+
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <select class="form-control border-primary" formControlName="prescription">
+                      <option value="" selected disabled>--Select--</option>
+                      <option value="P">Prescription</option>
+                      <option value="NP">No Prescription</option>
+                    </select>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input formControlName="availability" type="number" class="form-control  border-primary" id="expDate" placeholder="Availability">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input formControlName="expDate" type="text" class="form-control border-primary" id="expDate" placeholder="Expiry Date (DD-MM-YYYY)">
+                </div>
+                <div class="form-group">
+                  <textarea formControlName="description" type="text" class="form-control  border-primary" id="description" placeholder="Description"></textarea>
+                </div>
+                <div class="form-group">
+                  <span *ngIf="isCreated" class="text-success">Product updated successfully.</span>
+                  <span *ngIf="failedToCreate" class="text-danger">Failed to create product. Please try again..</span>
+                </div>
+              </div>
+              <div class="col-md-2"></div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button (click)="addProduct()" class="btn btn-only btn-fill btn-primary pull-right">Add</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</div>

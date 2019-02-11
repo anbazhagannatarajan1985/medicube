@@ -1,4 +1,20 @@
-.content-div{
-  height:90%;
+.content-div {
+  height: 90%;
   overflow-y: scroll;
+}
+
+.background-image {
+  z-index: -1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-color: #1c68dbe6;
+  opacity: 2;
+  filter: alpha(opacity=40);
+  background-image: url('/assets/images/notebook.jpg');
+  /* For IE8 and earlier */
 }

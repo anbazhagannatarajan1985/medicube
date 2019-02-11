@@ -1,80 +1,149 @@
-<div class="container-fluid">
-  <div class="row m-2 p-2">
-    <div class="col-8">
+<div class="container-fluid" style="padding-top: 30px !important;padding-bottom: 30px !important;">
+  <br>
+
+
+  <div class="row">
+    <div class="col-md-9" style="padding-left: 50px !important;">
       <div class="card">
-      <div class="card-header">
-        <div class="row">
-        <div class="col-8 text-left">
-          <b>Item</b>
-        </div>
-        <div class="col-2 text-left">
-          <b>Price</b>
-        </div>
-        <div class="col-2 text-left">
-          <b>Quantity</b>
-        </div>
-      </div>
-      </div>
-      <div class="card-content">
-        <div class="row  m-2 p-2 " *ngFor="let product of productList; let i = index;">
-            <div class="col-8 text-left">
-                {{product.name}}
-              </div>
-              <div class="col-2 text-left">
-                {{product.total}}
-              </div>
-              <div class="col-2 text-left text-danger">
-                  <i class="fa fa-minus" (click)="decreaseQuantity(i)" aria-hidden="true"></i> &nbsp;&nbsp; {{product.qty}} &nbsp;&nbsp; <i class="fa fa-plus" (click)="increaseQuantity(i)" aria-hidden="true"></i>
-              </div>
-        </div>
+        <table class="table table-hover shopping-cart-wrap">
+          <thead class="text-muted">
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col" width="120">Quantity</th>
+              <th scope="col" width="120">Price</th>
+              <th scope="col" width="200" class="text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <div *ngIf="!cartList || cartList.length <= 0" class="m-1 p-5">
+              <span class="text-danger">
+                <h5>No items available</h5>
+              </span>
+            </div>
+
+            <tr *ngFor="let cartItem of cartList; let i = index;">
+              <td>
+                <figure class="media">
+                  <!-- <div class="img-wrap">
+                    <img src="http://bootstrap-ecommerce.com/main/images/items/2.jpg" class="img-thumbnail img-sm">
+                  </div> -->
+                  <figcaption class="media-body">
+                    <h6 class="title text-truncate">{{cartItem.productName}}</h6>
+                    <dl class="param param-inline small">
+                      <dt>Price: </dt>
+                      <dd>{{cartItem.price}}</dd>
+                    </dl>
+                    <dl class="param param-inline small">
+                      <dt>Category: </dt>
+                      <dd>{{cartItem.category}}</dd>
+                    </dl>
+                    <dl class="param param-inline small">
+                      <dt>Sub Category: </dt>
+                      <dd>{{cartItem.subCategory}}</dd>
+                    </dl>
+                  </figcaption>
+                </figure>
+              </td>
+              <td style="width: 15% !important;">
+                <div class="row text-center form-input-inline">
+                  <a (click)="increaseQuantity(i)" title="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                  </a>
+                  <input disabled type="text" [(ngModel)]="cartItem.quantity" class="form-control border-success" style="width: 50px; !important">
+                  <a (click)="decreaseQuantity(i)" title="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </td>
+              <td>
+                <div class="price-wrap">
+                  <var class="price">
+                    <i class="fa fa-inr" aria-hidden="true"></i> {{cartItem.price}}</var>
+                </div>
+                <!-- price-wrap .// -->
+              </td>
+              <td class="text-right">
+                <!-- <a title="" href="" class="btn btn-outline-success" data-toggle="tooltip" data-original-title="Save to Wishlist">
+                  <i class="fa fa-heart"></i>
+                </a> -->
+                <a class="btn btn-outline-danger" (click)="removeCart(i)"> × Remove</a>
+              </td>
+            </tr>
+
+
+          </tbody>
+        </table>
       </div>
     </div>
-    </div>
-    <div class="col-4">
-      <div class="card border-primary">
-        <div class="card-header bg-primary">
-          Summary
+    <div class="col-md-3" style="padding-right: 50px !important;">
+      <div class="card sticky-top">
+        <div class="card-header bg-warning text-center">
+          <b>SUMMARY</b>
         </div>
-        <div class="card-content ">
-          <div class="row border-bottom m-1 p-1">
-            <div class="col-8 text-left" >
-              product1
-            </div>
-            <div class="col-4 text-right">
-                ₹ 100
-            </div>
-          </div>
-          <div class="row border-bottom m-1 p-1">
-            <div class="col-8 text-left" >
-              product2
-            </div>
-            <div class="col-4 text-right">
-                ₹ 150
-            </div>
-          </div>
-          <div class="row border-bottom m-1 p-1">
-              <div class="col-8 text-left" >
-                Tax
+        <!-- <div class="card-body"> -->
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-7 text-right">
+                Total Item :
               </div>
-              <div class="col-4 text-right">
-                  ₹ 15
+              <div class="col-md-5 text-left">
+                <b>{{cartSummary.totalItem}}</b>
               </div>
             </div>
-            <div class="row border-bottom m-1 p-1">
-              <div class="col-8 text-left" >
-                <b>SubTotal</b>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-7 text-right">
+                Total Quantity :
               </div>
-              <div class="col-4 text-right">
-                <b>₹ 300</b>
+              <div class="col-md-5 text-left">
+                <b>{{cartSummary.totalQuantity}}</b>
               </div>
             </div>
-            <div class="row m-1 p-1">
-              <button class="btn btn-fill btn-block btn-warning">
-                Check Out
-              </button>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-7 text-right">
+                Total Amount :
+              </div>
+              <div class="col-md-5 text-left">
+                <b> Rs. {{cartSummary.totalAmount}}</b>
+              </div>
             </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-7 text-right">
+                Tax @24% :
+              </div>
+              <div class="col-md-5 text-left">
+                <b> Rs. {{cartSummary.totalTax}}</b>
+              </div>
+            </div>
+          </li>
+
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-7 text-right">
+                Amount To Be Paid :
+              </div>
+              <div class="col-md-5 text-left">
+                <b> Rs. {{cartSummary.toBePaid}}</b>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+        <!-- </div> -->
+        <div class="card-footer bg-warning">
+          <button (click)="placeOrder()" [disabled]="!cartList || cartList.length <= 0" class="btn btn-fill btn-block btn-warning">Click here to Place Order</button>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- card.// -->
+
 </div>

@@ -1,61 +1,45 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-primary "  style="min-height: 40px; height: 40px;" >
-  <!-- <a class="navbar-brand text-white" href="#" ><img src="assets/images/logo.jpg" width="50px;" height="25px;"></a> -->
-  <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> -->
-    <!-- <span class="navbar-toggler-icon"></span> -->
-  <!-- </button> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top" style="min-height: 50px; height: 40px;">
+  <a class="navbar-brand" [routerLink]="['/home']">
+    <img src="assets/images/Medcube-logo.png" class="img-thumbnail" width="100px;">
+  </a>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PHARMA</a>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-      </li>
-      &nbsp;&nbsp;&nbsp;
-      <li class="nav-item dropdown">
-        <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">PERSONAL CARE</a>
-        <div class="dropdown-content">
-            <a [routerLink]="['/item-list']">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-      </li>
-      &nbsp;&nbsp;&nbsp;
-      <li class="nav-item dropdown">
-          <a class="nav-link text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BABY CARE</a>
-          <div class="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-        </li>
+  <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+    <ul class="navbar-nav mr-auto " style="padding-top: 20px; ">
+
+      <li *ngFor="let category of categories " class="nav-item dropdown ">
+        <a class="nav-link text-white " [routerLink]="[ '/item-list', category.id, ''] " id="navbarDropdown " role="button
+      " data-toggle="dropdown " aria-haspopup="true " aria-expanded="false ">{{category.name}}</a>
+        <div class="dropdown-content bg-primary ">
+          <a *ngFor="let subCategory of subCategories " [routerLink]="[ '/item-list', category.id, subCategory.id] ">{{subCategory.name}}</a>
+        </div>
         &nbsp;&nbsp;&nbsp;
-      <li class="nav-item dropdown">
-        <a class="nav-link text-white " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          NUTRITION
-        </a>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
       </li>
-      &nbsp;&nbsp;&nbsp;
-      <li class="nav-item">
-        <a class="nav-link disabled text-white" href="#">ABOUT US</a>
+      <li class="nav-item ">
+        <a class="nav-link disabled text-white " href="# ">ABOUT US</a>
       </li>
     </ul>
-    <!-- <li class="nav-item"> -->
-        <a class="text-white" [routerLink]="['/cart']">
-          <i class="fa fa-shopping-cart icon-white" aria-hidden="true">
-            <span *ngIf="kartCount > 0" class="badge">{{kartCount}}</span>
-          </i>
-        </a>
-        &nbsp;&nbsp;&nbsp;
-      <a class="text-white" [routerLink]="['/login']"><i class="fa fa-sign-out icon-white" aria-hidden="true"></i></a>
+
+
+    <!-- <li class="nav-item "> -->
+    <a class="text-white " [routerLink]="[ '/cart'] ">
+      <i class="fa fa-shopping-cart icon-white " aria-hidden="true ">
+        <span *ngIf="kartCount> 0" class="badge">
+          <span class="fa-stack icon-kart">
+            <!-- The icon that will wrap the number -->
+            <span class="fa fa-circle-o fa-stack-2x"></span>
+            <!-- a strong element with the custom content, in this case a number -->
+            <strong class="fa-stack-1x text-white">
+              {{kartCount}}
+            </strong>
+          </span>
+        </span>
+      </i>
+    </a>
+    &nbsp;&nbsp;&nbsp;
+
+    <a class="text-white" [routerLink]="['/login']" (click)="logout()">
+      <i class="fa fa-sign-out icon-white" aria-hidden="true"></i>
+    </a>
     <!-- </li> -->
   </div>
 </nav>

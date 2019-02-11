@@ -2,8 +2,8 @@ export class UserModel {
 
   firstName?: string;
   lastName?: string;
-  email?: string;
+  userName?: string;
   password?: string;
   permissionLevel?: number;
-  phone?: string;
+  phoneNumber?: string;
 }
